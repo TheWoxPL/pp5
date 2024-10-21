@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Formularz</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"  crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="assets/style/style.css">
+  </head>
+  <body class="body-bg body-color">
+      <div class="container mt-4">
+          <h2 class="text-center">Dane firmy</h2>
+      <form id="companyForm">
+        <div class="mb-3">
+          <label for="firmName" class="form-label">Nazwa firmy</label>
+          <input type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
+          <div id="nameHelp" class="form-text">Nie udostępniamy tych danych nikomu innemu.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="nip" class="form-label">NIP</label>
+          <input type="text" class="form-control" id="nip" aria-describedby="nipHelp" placeholder="Wprowadź NIP firmy" required>
+          <div id="nipHelp" class="form-text">Nie udostępniamy Twojego NIP nikomu innemu.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="miasto" class="form-label">Miasto</label>
+          <input type="text" class="form-control" id="miasto" placeholder="Wprowadź miasto" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="ulica" class="form-label">Ulica</label>
+          <input type="text" class="form-control" id="ulica" placeholder="Wprowadź nazwę ulicy" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="numerDomu" class="form-label">Numer domu</label>
+          <input type="text" class="form-control" id="numerDomu" placeholder="Wprowadź numer domu" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="numerMieszkania" class="form-label">Numer mieszkania (opcjonalne)</label>
+          <input type="text" class="form-control" id="numerMieszkania" placeholder="Wprowadź numer mieszkania">
+        </div>
+        
+        <div class="mb-3">
+          <label for="kodPocztowy" class="form-label">Kod pocztowy</label>
+          <input type="text" class="form-control" id="kodPocztowy" placeholder="Wprowadź kod pocztowy" required>
+        </div>
+
+        <!-- Nowe pole Uwagi -->
+        <div class="mb-3">
+          <label for="uwagi" class="form-label">Uwagi (opcjonalne)</label>
+          <textarea class="form-control" id="uwagi" rows="3" placeholder="Wprowadź dodatkowe uwagi"></textarea>
+        </div>
+
+        <!-- Nowe pole Branża -->
+        <div class="mb-3">
+          <label for="branza" class="form-label">Branża</label>
+          <select class="form-select" id="branza" required>
+            <option value="">Wybierz branżę</option>
+            <option value="handel">Handel</option>
+            <option value="uslugi">Usługi</option>
+            <option value="produkcja">Produkcja</option>
+            <option value="it">IT</option>
+          </select>
+        </div>
+
+        <!-- Nowe pole Aktywny -->
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="aktywny">
+          <label class="form-check-label" for="aktywny">Firma aktywna</label>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="check" required>
+          <label class="form-check-label" for="check">Zgadzam się na przetwarzanie danych</label>
+        </div>
+
+        <!-- Przycisk Zapisz -->
+        <button type="submit" class="btn btn-primary" onclick="saveFormData(event)">Zapisz</button>
+        <!-- Nowy przycisk Wstaw dane -->
+        <button type="button" class="btn btn-secondary" onclick="insertData()">Wstaw dane</button>
+      </form>
+    </div>
+    
+    <script>
+      function saveFormData(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+        
+        // Pobieranie danych z formularza
+        const formData = {
+          firmName: document.getElementById('firmName').value,
+          nip: document.getElementById('nip').value,
+          miasto: document.getElementById('miasto').value,
+          ulica: document.getElementById('ulica').value,
+          numerDomu: document.getElementById('numerDomu').value,
+          numerMieszkania: document.getElementById('numerMieszkania').value || 'Brak',
+          kodPocztowy: document.getElementById('kodPocztowy').value,
+          branza: document.getElementById('branza').value,
+          uwagi: document.getElementById('uwagi').value || 'Brak',
+          aktywny: document.getElementById('aktywny').checked
+        };
+
+        // Wypisywanie danych w konsoli
+        console.log(formData);
+      }
+
+      function insertData() {
+        // Wstawianie przykładowych danych do formularza
+        document.getElementById('firmName').value = "Przykładowa Firma";
+        document.getElementById('nip').value = "1234567890";
+        document.getElementById('miasto').value = "Warszawa";
+        document.getElementById('ulica').value = "Przykładowa";
+        document.getElementById('numerDomu').value = "10";
+        document.getElementById('numerMieszkania').value = "5";
+        document.getElementById('kodPocztowy').value = "00-000";
+        document.getElementById('branza').value = "it";
+        document.getElementById('uwagi').value = "To są przykładowe uwagi";
+        document.getElementById('aktywny').checked = true;
+
+        // Zablokowanie edytowalności pól
+        document.getElementById('firmName').disabled = true;
+        document.getElementById('nip').disabled = true;
+        document.getElementById('miasto').disabled = true;
+        document.getElementById('ulica').disabled = true;
+        document.getElementById('numerDomu').disabled = true;
+        document.getElementById('numerMieszkania').disabled = true;
+        document.getElementById('kodPocztowy').disabled = true;
+        document.getElementById('branza').disabled = true;
+        document.getElementById('uwagi').disabled = true;
+        document.getElementById('aktywny').disabled = true;
+        document.getElementById('check').disabled = true;
+      }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

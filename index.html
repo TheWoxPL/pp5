@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="assets/style/style.css">
   </head>
   <body class="body-bg body-color">
-      <div class="container mt-4">
+      <div class="container mt-4 main-form">
           <h2 class="text-center">Dane firmy</h2>
       <form id="companyForm">
+        <input type="text" hidden class="client-id" value="none">
         <div class="mb-3">
           <label for="firmName" class="form-label">Nazwa firmy</label>
           <input type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
@@ -78,18 +79,69 @@
         </div>
 
         <!-- Przycisk Zapisz -->
-        <button type="submit" class="btn btn-primary" onclick="saveFormData(event)">Zapisz</button>
+        <button type="submit" class="btn btn-primary submitbtn" onclick="saveFormData(event)">Zapisz</button>
+        <button type="button" class="btn btn-primary" onclick="showList()">Pokaz liste</button>
         <!-- Nowy przycisk Wstaw dane -->
         <button type="button" class="btn btn-secondary" onclick="insertData()">Wstaw dane</button>
+      
       </form>
     </div>
-    
+
+    <div class="customer-list">
+      <button type="button" class="btn btn-primary" onclick="showForm()">Pokaz formularz</button>
+    </div>
+
     <script>
+
+      function editForm(number){
+        showForm(customers[number])
+        document.querySelector(".client-id").value=number
+      }
+
+      function showForm(customer){
+        const mainForm = document.querySelector(".main-form")
+        mainForm.style.display="block"
+        const customerList = document.querySelector(".customer-list")
+        customerList.style.display="none"
+        if(customer!=null){
+          document.getElementById('firmName').value=customer.firmName
+          document.getElementById('nip').value=customer.nip
+          document.getElementById('miasto').value=customer.miasto
+          document.getElementById('ulica').value=customer.ulica
+          document.getElementById('numerDomu').value=customer.numerDomu
+          document.getElementById('numerMieszkania').value=customer.numerMieszkania
+          document.getElementById('kodPocztowy').value-customer.kodPocztowy
+          document.getElementById('branza').value=customer.branza
+          document.getElementById('uwagi').value=customer.uwagi
+          // document.getElementById('aktywny').c
+
+          document.getElementById('firmName').disabled = false;
+        document.getElementById('nip').disabled = false;
+        document.getElementById('miasto').disabled = false;
+        document.getElementById('ulica').disabled = false;
+        document.getElementById('numerDomu').disabled = false;
+        document.getElementById('numerMieszkania').disabled = false;
+        document.getElementById('kodPocztowy').disabled = false;
+        document.getElementById('branza').disabled = false;
+        document.getElementById('uwagi').disabled = false;
+        document.getElementById('aktywny').disabled = false;
+        document.getElementById('check').disabled = false;
+        }
+      }
+
+      function showList(){
+        const mainForm = document.querySelector(".main-form")
+        mainForm.style.display="none"
+        const customerList = document.querySelector(".customer-list")
+        customerList.style.display="block"
+      }
+
+      let customers = []
+      
+      showForm()
       function saveFormData(event) {
-        // Prevent default form submission behavior
         event.preventDefault();
-        
-        // Pobieranie danych z formularza
+
         const formData = {
           firmName: document.getElementById('firmName').value,
           nip: document.getElementById('nip').value,
@@ -103,8 +155,60 @@
           aktywny: document.getElementById('aktywny').checked
         };
 
-        // Wypisywanie danych w konsoli
-        console.log(formData);
+        if(
+          formData.firmName=="" ||
+          formData.nip=="" ||
+          formData.miasto=="" ||
+          formData.ulica=="" ||
+          formData.numerDomu=="" ||
+          formData.numerMieszkania=="" ||
+          formData.kodPocztowy=="" ||
+          formData.branza=="" ||
+          formData.uwagi=="" ||
+          formData.aktywny=="" 
+        ){
+          window.alert("Bledne dane")
+          return 0
+        }
+
+        const clientId = document.querySelector(".client-id").value
+        if(clientId=="none"){
+          customers.push(formData)
+        } else {
+          customers[clientId]=formData
+          clientId.value="none"
+        }
+
+        document.querySelector(".customer-list").innerHTML=`
+        <button type="button" class="btn btn-primary" onclick="showForm()">Pokaz formularz</button>
+        <br>
+        `
+        let counter = 0;
+        customers.forEach(el => {
+          let aktywny=(el.aktywny)?"Tak":"Nie"
+          document.querySelector(".customer-list").innerHTML+=`
+          <b>--------------------------------------</b>
+          <ul>
+            <li>Nazwa firmy: ${el.firmName}</li>
+            <li>NIP: ${el.nip}</li>
+            <li>Miasto: ${el.miasto}</li>
+            <li>Ulica:${el.ulica} </li>
+            <li>Numer domu: ${el.numerDomu}</li>
+            <li>Numer mieszkania: ${el.numerMieszkania}</li>
+            <li>Kod pocztowy: ${el.kodPocztowy}</li>
+            <li>Uwagi: ${el.branza}</li>
+            <li>Branża: ${el.uwagi}</li>
+            <li>Firma aktywna? ${aktywny}</li>
+            <button onclick="editForm(${counter})">Edytuj</button>
+          </ul>
+          <b>--------------------------------------</b>
+          <br>
+
+          `
+          counter++
+
+        });
+        console.log(customers)
       }
 
       function insertData() {

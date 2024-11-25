@@ -91,6 +91,7 @@
       <button type="button" class="btn btn-primary" onclick="showForm()">Pokaz formularz</button>
     </div>
 
+    <script src="customer.js" ></script>
     <script>
 
       function editForm(number){
@@ -138,10 +139,13 @@
 
       let customers = []
       
+      let customer = new customer
+
       showForm()
       function saveFormData(event) {
         event.preventDefault();
 
+        const customer = new Customer();
         const formData = {
           firmName: document.getElementById('firmName').value,
           nip: document.getElementById('nip').value,
@@ -154,6 +158,16 @@
           uwagi: document.getElementById('uwagi').value || 'Brak',
           aktywny: document.getElementById('aktywny').checked
         };
+        customer.firmName=formData.firmName
+        customer.nip=formData.nip
+        customer.miasto=formData.miasto
+        customer.ulica=formData.ulica
+        customer.numerDomu=formData.numerDomu
+        customer.numerMieszkania=formData.numerMieszkania
+        customer.kodPocztowy=formData.kodPocztowy
+        customer.branza=formData.branza
+        customer.uwagi=formData.uwagi
+        customer.aktywny=formData.aktywny
 
         if(
           formData.firmName=="" ||
@@ -165,7 +179,7 @@
           formData.kodPocztowy=="" ||
           formData.branza=="" ||
           formData.uwagi=="" ||
-          formData.aktywny=="" 
+          formData.aktywny==""
         ){
           window.alert("Bledne dane")
           return 0
@@ -173,7 +187,7 @@
 
         const clientId = document.querySelector(".client-id").value
         if(clientId=="none"){
-          customers.push(formData)
+          customers.push(customer)
         } else {
           customers[clientId]=formData
           clientId.value="none"
@@ -189,18 +203,9 @@
           document.querySelector(".customer-list").innerHTML+=`
           <b>--------------------------------------</b>
           <ul>
-            <li>Nazwa firmy: ${el.firmName}</li>
-            <li>NIP: ${el.nip}</li>
-            <li>Miasto: ${el.miasto}</li>
-            <li>Ulica:${el.ulica} </li>
-            <li>Numer domu: ${el.numerDomu}</li>
-            <li>Numer mieszkania: ${el.numerMieszkania}</li>
-            <li>Kod pocztowy: ${el.kodPocztowy}</li>
-            <li>Uwagi: ${el.branza}</li>
-            <li>Branża: ${el.uwagi}</li>
-            <li>Firma aktywna? ${aktywny}</li>
-            <button onclick="editForm(${counter})">Edytuj</button>
-          </ul>
+            <li>Dane: ${el.getData()} </li>
+            <li>Address: ${el.getAddress()}</li>
+           </ul>
           <b>--------------------------------------</b>
           <br>
 
@@ -210,6 +215,21 @@
         });
         console.log(customers)
       }
+
+      // <li>Nazwa firmy: ${el.firmName}</li>
+            // <li>NIP: ${el.nip}</li>
+
+
+      // <li>Miasto: ${el.miasto}</li>
+      //       <li>Ulica:${el.ulica} </li>
+      //       <li>Numer domu: ${el.getAddress()}</li>
+      //       <li>Numer mieszkania: ${el.numerMieszkania}</li>
+      //       <li>Kod pocztowy: ${el.kodPocztowy}</li>
+      // <li>Uwagi: ${el.branza}</li>
+      //       <li>Branża: ${el.uwagi}</li>
+      //       <li>Firma aktywna? ${aktywny}</li>
+      //       <button onclick="editForm(${counter})">Edytuj</button>
+         
 
       function insertData() {
         // Wstawianie przykładowych danych do formularza

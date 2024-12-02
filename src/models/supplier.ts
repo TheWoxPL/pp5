@@ -1,3 +1,5 @@
+import { Customer } from './customer';
+
 class Supplier extends Customer {
     constructor() {
         super()

@@ -1,0 +1,78 @@
+<div class="container mt-4 main-form">
+    <h2 class="text-center">Dane firmy</h2>
+<form id="companyForm">
+  <input type="text" hidden class="client-id" value="none">
+  <div class="mb-3">
+    <label for="firmName" class="form-label">Nazwa firmy</label>
+    <input type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
+    <div id="nameHelp" class="form-text">Nie udostępniamy tych danych nikomu innemu.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="nip" class="form-label">NIP</label>
+    <input type="text" class="form-control" id="nip" aria-describedby="nipHelp" placeholder="Wprowadź NIP firmy" required>
+    <div id="nipHelp" class="form-text">Nie udostępniamy Twojego NIP nikomu innemu.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="miasto" class="form-label">Miasto</label>
+    <input type="text" class="form-control" id="miasto" placeholder="Wprowadź miasto" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="ulica" class="form-label">Ulica</label>
+    <input type="text" class="form-control" id="ulica" placeholder="Wprowadź nazwę ulicy" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="numerDomu" class="form-label">Numer domu</label>
+    <input type="text" class="form-control" id="numerDomu" placeholder="Wprowadź numer domu" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="numerMieszkania" class="form-label">Numer mieszkania (opcjonalne)</label>
+    <input type="text" class="form-control" id="numerMieszkania" placeholder="Wprowadź numer mieszkania">
+  </div>
+  
+  <div class="mb-3">
+    <label for="kodPocztowy" class="form-label">Kod pocztowy</label>
+    <input type="text" class="form-control" id="kodPocztowy" placeholder="Wprowadź kod pocztowy" required>
+  </div>
+
+  <!-- Nowe pole Uwagi -->
+  <div class="mb-3">
+    <label for="uwagi" class="form-label">Uwagi (opcjonalne)</label>
+    <textarea class="form-control" id="uwagi" rows="3" placeholder="Wprowadź dodatkowe uwagi"></textarea>
+  </div>
+
+  <!-- Nowe pole Branża -->
+  <div class="mb-3">
+    <label for="branza" class="form-label">Branża</label>
+    <select class="form-select" id="branza" required>
+      <option value="">Wybierz branżę</option>
+      <option value="handel">Handel</option>
+      <option value="uslugi">Usługi</option>
+      <option value="produkcja">Produkcja</option>
+      <option value="it">IT</option>
+    </select>
+  </div>
+
+  <!-- Nowe pole Aktywny -->
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="aktywny">
+    <label class="form-check-label" for="aktywny">Firma aktywna</label>
+  </div>
+
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="check" required>
+    <label class="form-check-label" for="check">Zgadzam się na przetwarzanie danych</label>
+  </div>
+
+  <!-- Przycisk Zapisz -->
+  <button type="submit" class="btn btn-primary submitbtn" onclick="saveFormData(event)">Zapisz</button>
+  <button type="button" class="btn btn-primary" onclick="showList()">Pokaz liste</button>
+  <!-- Nowy przycisk Wstaw dane -->
+  <button type="button" class="btn btn-secondary" onclick="insertData()">Wstaw dane</button>
+
+</form>
+</div>

@@ -1,54 +1,55 @@
+{{customer|json}}
 <div class="container mt-4 main-form">
     <h2 class="text-center">Dane firmy</h2>
-<form id="companyForm">
+<form id="companyForm" (ngSubmit)="handleSubmit()" >
   <input type="text" hidden class="client-id" value="none">
   <div class="mb-3">
     <label for="firmName" class="form-label">Nazwa firmy</label>
-    <input type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
+    <input name="name" [(ngModel)]="customer.firmName" type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
     <div id="nameHelp" class="form-text">Nie udostępniamy tych danych nikomu innemu.</div>
   </div>
 
   <div class="mb-3">
     <label for="nip" class="form-label">NIP</label>
-    <input type="text" class="form-control" id="nip" aria-describedby="nipHelp" placeholder="Wprowadź NIP firmy" required>
+    <input name="nip" [(ngModel)]="customer.nip"  type="text" class="form-control" id="nip" aria-describedby="nipHelp" placeholder="Wprowadź NIP firmy" required>
     <div id="nipHelp" class="form-text">Nie udostępniamy Twojego NIP nikomu innemu.</div>
   </div>
 
   <div class="mb-3">
     <label for="miasto" class="form-label">Miasto</label>
-    <input type="text" class="form-control" id="miasto" placeholder="Wprowadź miasto" required>
+    <input name="miasto" type="text" class="form-control" id="miasto" placeholder="Wprowadź miasto" required>
   </div>
 
   <div class="mb-3">
     <label for="ulica" class="form-label">Ulica</label>
-    <input type="text" class="form-control" id="ulica" placeholder="Wprowadź nazwę ulicy" required>
+    <input name="ulica" type="text" class="form-control" id="ulica" placeholder="Wprowadź nazwę ulicy" required>
   </div>
 
   <div class="mb-3">
     <label for="numerDomu" class="form-label">Numer domu</label>
-    <input type="text" class="form-control" id="numerDomu" placeholder="Wprowadź numer domu" required>
+    <input name="numerDomu" type="text" class="form-control" id="numerDomu" placeholder="Wprowadź numer domu" required>
   </div>
 
   <div class="mb-3">
     <label for="numerMieszkania" class="form-label">Numer mieszkania (opcjonalne)</label>
-    <input type="text" class="form-control" id="numerMieszkania" placeholder="Wprowadź numer mieszkania">
+    <input name="numer_mieszkania" type="text" class="form-control" id="numerMieszkania" placeholder="Wprowadź numer mieszkania">
   </div>
   
   <div class="mb-3">
     <label for="kodPocztowy" class="form-label">Kod pocztowy</label>
-    <input type="text" class="form-control" id="kodPocztowy" placeholder="Wprowadź kod pocztowy" required>
+    <input name="kodPocztowy" type="text" class="form-control" id="kodPocztowy" placeholder="Wprowadź kod pocztowy" required>
   </div>
 
   <!-- Nowe pole Uwagi -->
   <div class="mb-3">
     <label for="uwagi" class="form-label">Uwagi (opcjonalne)</label>
-    <textarea class="form-control" id="uwagi" rows="3" placeholder="Wprowadź dodatkowe uwagi"></textarea>
+    <textarea  name="uwagi"class="form-control" id="uwagi" rows="3" placeholder="Wprowadź dodatkowe uwagi"></textarea>
   </div>
 
   <!-- Nowe pole Branża -->
   <div class="mb-3">
     <label for="branza" class="form-label">Branża</label>
-    <select class="form-select" id="branza" required>
+    <select name="branza" class="form-select" id="branza" required>
       <option value="">Wybierz branżę</option>
       <option value="handel">Handel</option>
       <option value="uslugi">Usługi</option>
@@ -59,12 +60,12 @@
 
   <!-- Nowe pole Aktywny -->
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="aktywny">
+    <input name="aktywna" type="checkbox" class="form-check-input" id="aktywny">
     <label class="form-check-label" for="aktywny">Firma aktywna</label>
   </div>
 
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="check" required>
+    <input name="zgoda" type="checkbox" class="form-check-input" id="check" required>
     <label class="form-check-label" for="check">Zgadzam się na przetwarzanie danych</label>
   </div>
 

@@ -1,1 +1,11 @@
-<p>customer-list works!</p>
+<!-- <app-customer-list-element  [customer]="customersList[0]"></app-customer-list-element> -->
+<app-customer-list-element *ngFor="let customer of customersList; index as i" [customer]="customer"></app-customer-list-element>
+<!-- <p>
+  {{ customersList | json }}
+</p>
+
+
+<div
+  *ngFor="let customer of customersList; index as i" >
+  {{ customer.name }}
+</div> -->

@@ -73,7 +73,8 @@ function saveFormData(event) {
     else {
         customers[parseInt(clientId, 10)] = formData;
     }
-    showList();
+    // showList();
+    // showForm()
     updateCustomerList();
 }
 function updateCustomerList() {

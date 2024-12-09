@@ -1,1 +1,6 @@
-{{ customer.firmName }}
+
+<li class="" [ngStyle]="{color: 'black'}">
+    {{ customer.getData() }}
+    <button (click)="deleteCustomer()" >Delete</button>
+</li>   
+

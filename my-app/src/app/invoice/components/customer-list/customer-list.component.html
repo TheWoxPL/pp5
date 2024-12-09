@@ -1,9 +1,12 @@
 <!-- <app-customer-list-element  [customer]="customersList[0]"></app-customer-list-element> -->
-<app-customer-list-element *ngFor="let customer of customersList; index as i" [customer]="customer"></app-customer-list-element>
+<ul>
+  <app-customer-list-element [ngStyle]="{'background-color':'green'}"  *ngFor="let customer of customersList; index as i" [customer]="customer" (deleteCustomerEvent)="deleteCustomer($event)"></app-customer-list-element>
+</ul>
+<hr>
+<button (click)="redirectToForm()">Powrót</button>
 <!-- <p>
   {{ customersList | json }}
 </p>
-
 
 <div
   *ngFor="let customer of customersList; index as i" >

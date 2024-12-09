@@ -11,10 +11,13 @@ export class Customer {
   branza: string = '';
 
   getData(): string {
-    return `${this.firmName}, NIP: ${this.nip}`;
+    return `Nazwa firmy: ${this.firmName}, NIP: ${this.nip}`;
   }
 
   getAddress(): string {
     return `${this.ulica} ${this.numerDomu}, ${this.miasto}, ${this.kodPocztowy}`;
+  }
+  isActive(): boolean {
+    return this.aktywny;
   }
 }

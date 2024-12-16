@@ -1,11 +1,12 @@
 {{customer|json}}
 <div class="container mt-4 main-form">
     <h2 class="text-center">Dane firmy</h2>
-<form id="companyForm" (ngSubmit)="handleSubmit()" >
+<form #f="ngForm" id="companyForm" (ngSubmit)="handleSubmit(f)" >
   <input type="text" hidden class="client-id" value="none">
   <div class="mb-3">
     <label for="firmName" class="form-label">Nazwa firmy</label>
-    <input name="name" [(ngModel)]="customer.firmName" type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
+    <input class="bordered" #name="ngModel" name="name" [(ngModel)]="customer.firmName" type="text" class="form-control" id="firmName" aria-describedby="nameHelp" placeholder="Wprowadź nazwę firmy" required>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">s</div>
     <div id="nameHelp" class="form-text">Nie udostępniamy tych danych nikomu innemu.</div>
   </div>
 
@@ -70,10 +71,10 @@
   </div>
 
   <!-- Przycisk Zapisz -->
-  <button type="submit" class="btn btn-primary submitbtn">Zapisz</button>
+  <button *ngIf="f.valid" type="submit" class="btn btn-primary submitbtn">Zapisz</button>
   <button type="button" class="btn btn-primary" onclick="showList()">Pokaz liste</button>
   <!-- Nowy przycisk Wstaw dane -->
-  <button type="button" class="btn btn-secondary" onclick="insertData()">Wstaw dane</button>
+  <button  type="button" class="btn btn-secondary" onclick="insertData()">Wstaw dane</button>
 
 </form>
 </div>

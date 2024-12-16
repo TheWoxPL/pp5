@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Customer } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-form',
@@ -16,9 +17,12 @@ export class CustomerFormComponent {
   ){}
 
   customer: Customer = new Customer();
-  handleSubmit(){
-    this.customerService.addCustomer(this.customer)
-    this.router.navigate(['/invoice/customer-list'])
-    console.log(this.customer);
+  handleSubmit(ngForm: NgForm){
+    // console.log(ngForm.valid)
+    if(ngForm.valid) {
+      this.customerService.addCustomer(this.customer)
+      this.router.navigate(['/invoice/customer-list'])
+      console.log(this.customer);
+    }
   }
 }

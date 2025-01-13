@@ -30,10 +30,11 @@ export class CustomerService {
     // return this.customersList
   }
 
-  removeCustomer(customer: Customer) {
-    this.customersList = this.customersList.filter((x: Customer) => {
-      return x.nip !== customer.nip
-    })
-    return this.customersList;
+  removeCustomer(customer: Customer): Observable<Customer> {
+    this.httpClient.delete(this.baseUrl+ '/' + customer.id)
+    // this.customersList = this.customersList.filter((x: Customer) => {
+    //   return x.nip !== customer.nip
+    // })
+    // return this.customersList;
   }
 }

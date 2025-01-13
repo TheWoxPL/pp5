@@ -31,13 +31,16 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   deleteCustomer(customer: Customer){
     console.log("rodzic ma usunąć: ", customer)
-    this.customersList = this.customerService.removeCustomer(customer);
+    this.customerService.removeCustomer(customer).subscribe((data: Customer[]) => {
+      console.log(data)
+      this.customersList=data;
+    })
   }
 
   getCustomers(){
     this.customerService.getCustomers().subscribe((data: Customer[]) => {
       console.log(data)
-      this.customersList=data;
+      this.customersList=data
     })
   }
 

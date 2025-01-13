@@ -9,6 +9,7 @@ export class Customer {
   uwagi: string = 'Brak';
   aktywny: boolean = false;
   branza: string = '';
+  id: string =  crypto.randomUUID()
 
   getData(): string {
     return `Nazwa firmy: ${this.firmName}, NIP: ${this.nip}`;

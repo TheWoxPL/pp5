@@ -14,13 +14,15 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     private customerService: CustomerService,
     private router: Router
   ){
-    this.customersList = customerService.getCustomers();
+    // this.customersList = customerService.getCustomers();
   }
   ngOnDestroy(): void {
     console.log('opuszczanie komponenta')
   }
   ngOnInit(): void {
-    this.customersList=this.customerService.getCustomers()
+    this.customerService.getCustomers().subscribe((data: Customer[]) => {
+      this.customersList=data
+    })
   }
 
   redirectToForm(){
@@ -32,6 +34,12 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customersList = this.customerService.removeCustomer(customer);
   }
 
+  getCustomers(){
+    this.customerService.getCustomers().subscribe((data: Customer[]) => {
+      console.log(data)
+      this.customersList=data;
+    })
+  }
 
   customersList: Customer[] = [];
 }

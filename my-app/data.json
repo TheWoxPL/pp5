@@ -1,0 +1,59 @@
+{
+  "customers": [
+    {
+      "id": "c6df",
+      "firmName": "1",
+      "nip": "12",
+      "miasto": "",
+      "ulica": "",
+      "numerDomu": "0",
+      "numerMieszkania": "Brak",
+      "kodPocztowy": "",
+      "uwagi": "Brak",
+      "aktywny": false,
+      "branza": ""
+    },
+    {
+      "id": "c4c1",
+      "firmName": "1",
+      "nip": "1",
+      "miasto": "",
+      "ulica": "",
+      "numerDomu": "0",
+      "numerMieszkania": "Brak",
+      "kodPocztowy": "",
+      "uwagi": "Brak",
+      "aktywny": false,
+      "branza": ""
+    },
+    {
+      "id": "ecd9",
+      "firmName": "2",
+      "nip": "2",
+      "miasto": "",
+      "ulica": "",
+      "numerDomu": "0",
+      "numerMieszkania": "Brak",
+      "kodPocztowy": "",
+      "uwagi": "Brak",
+      "aktywny": false,
+      "branza": ""
+    },
+    {
+      "id": "83a5",
+      "firmName": "4",
+      "nip": "4",
+      "miasto": "",
+      "ulica": "",
+      "numerDomu": "0",
+      "numerMieszkania": "Brak",
+      "kodPocztowy": "",
+      "uwagi": "Brak",
+      "aktywny": false,
+      "branza": ""
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

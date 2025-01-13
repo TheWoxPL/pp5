@@ -20,4 +20,9 @@ export class Customer {
   isActive(): boolean {
     return this.aktywny;
   }
+
+  deseralize(input: any): Customer{
+    Object.assign(this, input);
+    return this;
+  }
 }
